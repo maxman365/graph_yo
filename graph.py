@@ -81,6 +81,8 @@ class Directgraph:
                 for j in self.edges[i]:
                     if j in vertex_list:
                         res.add_edge(i, j, self.edges[i][j])
+        return res                
+         
 
     ### induced à retravailler car complexité dégueue
 
