@@ -118,7 +118,7 @@ class Directgraph:
         mat = [[ float('inf') for k in range(len(self.verticies))] for i in range(len(self.verticies))]
         for i in self.edges:
             for j in self.edges[i]:
-                mat[i - 1][j - 1] = self.edges[i][j]
+                mat[i][j] = self.edges[i][j]
         for p in mat:
             print(p, end="\n")
 
