@@ -131,7 +131,7 @@ class Directgraph:
 
     def dijkstra_base(self, s):
         """basic dijkstra algorithm, return distances from s to all other verticies"""
-        F = copy(self.verticies)
+        F = set(copy(self.verticies))
         dist = {}
         for v in self.verticies:
             dist[v] = float('inf')
@@ -156,7 +156,7 @@ class Directgraph:
             else:
                 F.remove(u)
 
-            for v in set(F) & self.edges[u].keys():
+            for v in F & self.edges[u].keys():
                 if dist[u] + self.edges[u][v] < dist[v]:
                     dist[v] = dist[u] + self.edges[u][v]
         return dist
@@ -164,7 +164,7 @@ class Directgraph:
     def dijkstra_binary_heap(self, s):
         """upgraded dijkstra using a binary heap to get the argmin in constant time, assuming connexity of graph"""
 
-        F = copy(self.verticies)
+        F = set(copy(self.verticies))
         dist = {}
         for v in self.verticies:
             dist[v] = float('inf')
@@ -180,7 +180,7 @@ class Directgraph:
 
             F.remove(u)
 
-            for v in set(F) & self.edges[u].keys():
+            for v in F & self.edges[u].keys():
                 if dist[v] > dist[u] + self.edges[u][v]:
                     dist[v] = dist[u] + self.edges[u][v]
                     hq.heappush(preheap, (dist[v], v))
@@ -191,7 +191,7 @@ class Directgraph:
     def dijkstra_binary_heap_one_track(self, start, finish):
         """upgraded dijkstra using a binary heap to get the argmin in constant time, assuming connexity of graph"""
 
-        F = copy(self.verticies)
+        F = set(copy(self.verticies))
         dist = {}
         for v in self.verticies:
             dist[v] = float('inf')
@@ -210,7 +210,7 @@ class Directgraph:
 
             F.remove(u)
 
-            for v in set(F) & self.edges[u].keys():
+            for v in F & self.edges[u].keys():
                 if dist[v] > dist[u] + self.edges[u][v]:
                     dist[v] = dist[u] + self.edges[u][v]
                     hq.heappush(preheap, (dist[v], v))
